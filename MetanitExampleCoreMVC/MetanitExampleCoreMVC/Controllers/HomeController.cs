@@ -10,28 +10,32 @@ namespace MetanitExampleCoreMVC.Controllers
 {
     public class HomeController : Controller
     {
+        MobileContext db;
+
+        public HomeController(MobileContext context)
+        {
+            db = context;
+        }
+
         public IActionResult Index()
         {
+            return View(db.Phones.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult Buy(int id)
+        {
+            ViewBag.PhoneId = id;
             return View();
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public string Buy(Order order)
         {
-            ViewData["Message"] = "Your application description page.";
+            db.Orders.Add(order);
+            db.SaveChanges();
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return "Спасибо, " + order.User + ", за покупку!";
         }
     }
 }

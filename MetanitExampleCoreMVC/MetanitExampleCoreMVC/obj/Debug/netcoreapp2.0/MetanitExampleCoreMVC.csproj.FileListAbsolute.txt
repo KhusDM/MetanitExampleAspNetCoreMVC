@@ -1,0 +1,11 @@
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\bin\Debug\netcoreapp2.0\MetanitExampleCoreMVC.deps.json
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\bin\Debug\netcoreapp2.0\MetanitExampleCoreMVC.runtimeconfig.json
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\bin\Debug\netcoreapp2.0\MetanitExampleCoreMVC.runtimeconfig.dev.json
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\bin\Debug\netcoreapp2.0\MetanitExampleCoreMVC.dll
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\bin\Debug\netcoreapp2.0\MetanitExampleCoreMVC.pdb
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\obj\Debug\netcoreapp2.0\MetanitExampleCoreMVC.csprojResolveAssemblyReference.cache
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\obj\Debug\netcoreapp2.0\MetanitExampleCoreMVC.csproj.CoreCompileInputs.cache
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\obj\Debug\netcoreapp2.0\MetanitExampleCoreMVC.AssemblyInfoInputs.cache
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\obj\Debug\netcoreapp2.0\MetanitExampleCoreMVC.AssemblyInfo.cs
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\obj\Debug\netcoreapp2.0\MetanitExampleCoreMVC.dll
+C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\obj\Debug\netcoreapp2.0\MetanitExampleCoreMVC.pdb
