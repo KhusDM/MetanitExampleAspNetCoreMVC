@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+@{
+    ViewData["Title"] = "_GetMessage";
+}
+
+
+<h3>Частичное представление</h3>
+<ul>
+    @foreach (var phone in Model)
+    { 
+        <li>@phone</li>
+    }
+    </ul>
+

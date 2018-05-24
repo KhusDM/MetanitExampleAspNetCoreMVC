@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using MetanitExampleCoreMVC.Services;
+using Microsoft.AspNetCore.Mvc;
+using MetanitExampleCoreMVC.Util;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Http;
 
 namespace MetanitExampleCoreMVC
 {
@@ -26,6 +31,13 @@ namespace MetanitExampleCoreMVC
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<MobileContext>(options => options.UseSqlServer(connection));
+            services.AddTransient<ITimeService, SimpleTimeService>();
+            services.AddTransient<IMessageSender, EmailMessageSender>();
+            services.Configure<MvcViewOptions>(options =>
+            {
+                options.ViewEngines.Clear();
+                options.ViewEngines.Add(new CustomViewEngine());
+            });
             services.AddMvc();
         }
 
@@ -36,6 +48,7 @@ namespace MetanitExampleCoreMVC
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseMvcWithDefaultRoute();
             }
             else
             {
@@ -49,6 +62,12 @@ namespace MetanitExampleCoreMVC
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Home}/{action=Index}");
+                routes.MapRoute("api/get", async context =>
+                 {
+                     context.Response.ContentType = "text/html;utf-8";
+                     await context.Response.WriteAsync("для обработки использован маршрут api / get");
+                 });
             });
         }
     }

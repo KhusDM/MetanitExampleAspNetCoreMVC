@@ -1,7 +1,33 @@
-﻿@{
-    ViewData["Title"] = "About";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+﻿@*@{
+        ViewData["Title"] = "About";
+    }
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+    <p>Use this area to provide additional information.</p>
+
+    @{
+        ViewBag.Title = "About";
+    }
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Use this area to provide additional information.</p>
+
+    <h3>В списке @(((List<string>)ViewBag.Countries).Count) элемента:</h3>
+
+    @foreach (string country in ViewBag.Countries)
+    {
+        <p>@country</p>
+    }*@
+
+@model List<string>
+@{
+    ViewBag.Title = "About";
+}
+
+<h3>В списке @Model.Count элемента</h3>
+@foreach (string country in Model)
+{
+    <p>@country</p>
+}

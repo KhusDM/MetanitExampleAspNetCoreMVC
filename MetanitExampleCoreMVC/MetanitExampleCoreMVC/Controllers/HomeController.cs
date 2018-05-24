@@ -7,22 +7,30 @@ using Microsoft.AspNetCore.Mvc;
 using MetanitExampleCoreMVC.Models;
 using MetanitExampleCoreMVC.Util;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System.IO;
+using MetanitExampleCoreMVC.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MetanitExampleCoreMVC.Controllers
 {
     //[NonController]
+    //[Route("Store")]
     public class HomeController : Controller
     {
+        readonly ITimeService timeService;
         readonly IHostingEnvironment hostingEnvironment;
         MobileContext db;
 
-        public HomeController(MobileContext context, IHostingEnvironment hostingEnvironment)
+        public HomeController(MobileContext context, IHostingEnvironment hostingEnvironment, ITimeService timeService)
         {
             db = context;
             this.hostingEnvironment = hostingEnvironment;
+            this.timeService = timeService;
         }
 
+        //[Route("Main")]     // сопоставляется с Home/Main, либо с Store/Main
+        //[Route("Index")] // сопоставляется с Home/Index, либо с Store/Index
         public IActionResult Index()
         {
             return View(db.Phones.ToList());
@@ -192,6 +200,119 @@ namespace MetanitExampleCoreMVC.Controllers
             string file_name = "1.txt";
 
             return File(mas, file_type, file_name);
+        }
+
+        public void Headers()
+        {
+            string table = "";
+            foreach (var header in Request.Headers)
+            {
+                table += $"<tr><td>{header.Key}</td><td>{header.Value}</td></tr>";
+            }
+
+            Response.WriteAsync(String.Format("<table>{0}</table>", table));
+        }
+
+        public void NotFound()
+        {
+            Response.StatusCode = 404;
+            Response.WriteAsync("Not Found!");
+        }
+
+        public string TimeService()
+        {
+            return timeService.Time;
+        }
+
+        public string TimeServiceFromServices([FromServices]ITimeService timeService)
+        {
+            return timeService.Time;
+        }
+
+        public string TimeServiceRequestServices()
+        {
+            ITimeService timeService = HttpContext.RequestServices.GetService<ITimeService>();
+
+            return timeService?.Time;
+        }
+
+        //public IActionResult About()
+        //{
+        //    ViewData["Message"] = "Hello ASP.NET Core";
+
+        //    return View();
+        //}
+
+        //public IActionResult About()
+        //{
+        //    ViewBag.Message = "Hello ASP.NET Core";
+
+        //    return View();
+        //}
+
+        //public IActionResult About()
+        //{
+        //    ViewBag.Countries = new List<string> { "Бразилия", "Аргентина", "Уругвай", "Чили" };
+        //    return View();
+        //}
+
+        public IActionResult About()
+        {
+            IEnumerable<string> countries = new List<string>() { "Бразилия", "Аргентина", "Уругвай", "Чили" };
+
+            return View(countries);
+        }
+
+        public IActionResult GetMessage()
+        {
+            return PartialView("_GetMessage");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string login, string password, int age, string comment, bool isMarried, string color, string[] phones)
+        {
+            string result = "";
+            foreach (string p in phones)
+            {
+                result += p;
+                result += ";";
+            }
+
+            string authData = $"Login: {login}   Password: {password}   Age: {age}  Comment: {comment}  Is married: {isMarried}  color: {color}  phones: {result}";
+            return Content(authData);
+        }
+
+        public IActionResult GetRouteData()
+        {
+            var controller = RouteData.Values["controller"].ToString();
+            var action = RouteData.Values["action"].ToString();
+
+            return Content($"controller: {controller} | action: {action}");
+        }
+
+        [Route("homepage")]
+        public IActionResult AttributeRouteMethod()
+        {
+            return Content("Hello ASP.NET MVC 6");
+        }
+
+        [Route("{id:int}/{name:maxlength(10)}")]
+        public IActionResult AttributeRouteMethod2(int id, string name)
+        {
+            return Content($" id={id} | name={name}");
+        }
+
+        public IActionResult About2()
+        {
+            string contentUrl = Url.Content("~/lib/jquery/dist/jquery.js");
+            string actionUrl = Url.Action("Index", "Home");
+            return Content(contentUrl);
         }
     }
 

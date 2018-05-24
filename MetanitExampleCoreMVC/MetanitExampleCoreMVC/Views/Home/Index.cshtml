@@ -1,7 +1,14 @@
 ﻿@model IEnumerable<MetanitExampleCoreMVC.Models.Phone>
 @{
     ViewData["Title"] = "Каталог товаров";
+    Layout = "~/Views/_Master.cshtml";
+    string head = "Привет мир!!!";
+    head += " Добро пожаловать на сайт!";
+    bool isEnabled = false;
+    int x = 6, k = 1;
+    string[] phones = { "Lumia 950", "iPhone 6S", "Galaxy S 6", "LG G4" };
 }
+<h3>@head</h3>
 <h3>Смартфоны</h3>
 <table class="table-condensed">
     <tr>
@@ -20,3 +27,90 @@
         </tr>
     }
 </table>
+<p>Дата: @DateTime.Now.ToLongDateString()</p>
+<p>@(20 + 30)</p>
+<p>@@DateTime.Now =@DateTime.Now.ToLongDateString()</p>
+@* текст комментария *@
+@if (isEnabled)
+{
+    <p>Добро пожаловать</p>
+}
+else
+{
+    <p>@head</p>
+}
+
+@switch (x)
+{
+    case 5:<p>@(x * x)</p>break;
+case 6:<p>@(x + x)</p>break;
+default: break;
+}
+
+@for (var i = 1; i < 6; i++)
+{
+    <p>Строка: @i</p>
+}
+
+@while (k < 6)
+{
+    <p>Строка: @k</p>
+    k++;
+}
+
+@do
+{
+    <p>Строка: @k</p>
+    k++;
+}
+while (k < 6);
+<p>Конец</p>
+
+<ul>
+    @foreach (var phone in phones)
+    {
+        <li>@phone</li>
+    }
+</ul>
+
+
+@try
+{
+    throw new InvalidOperationException("Что-то пошло не так");
+}
+catch (Exception ex)
+{
+    <p>Возникло исключение: @ex.Message</p>
+}
+finally
+{
+    <p>Блок finally</p>
+}
+
+@if (!isEnabled)
+{
+    @: Добро пожаловать
+}
+
+@functions
+{
+public int GetFactorial(int n)
+{
+    int result = 1;
+    for (int i = 1; i <= n; i++)
+        result *= i;
+    return result;
+}
+}
+<div>Факториал числа 6 равен: @GetFactorial(6)</div>
+
+@section Footer{
+    Все права защищены. Site Corp. 2016.
+}
+
+@Html.Partial("_GetMessage", new List<string> { "Lumia 950", "iPhone 6S", "Samsung Galaxy s 6", "LG G 4" })
+
+@*@{ await Html.RenderPartialAsync("_GetMessage"); }*@
+
+@inject MetanitExampleCoreMVC.Services.IMessageSender messageSender
+@messageSender.SendMessage();
