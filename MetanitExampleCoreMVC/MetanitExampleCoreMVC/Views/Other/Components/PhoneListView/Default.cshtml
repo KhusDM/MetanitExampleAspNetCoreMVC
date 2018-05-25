@@ -1,0 +1,15 @@
+﻿@model IEnumerable<KeyValuePair<string, int>>
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h2>Default</h2>
+
+<h2>Список телефонов</h2>
+<ul>
+    @foreach (var phone in Model)
+    {
+        <li>Модель: @phone.Key  Цена:@phone.Value</li>
+    }
+</ul>
+

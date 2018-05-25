@@ -33,6 +33,7 @@ namespace MetanitExampleCoreMVC
             services.AddDbContext<MobileContext>(options => options.UseSqlServer(connection));
             services.AddTransient<ITimeService, SimpleTimeService>();
             services.AddTransient<IMessageSender, EmailMessageSender>();
+            services.AddTransient<IRepository, PhoneRepository>();
             services.Configure<MvcViewOptions>(options =>
             {
                 options.ViewEngines.Clear();
