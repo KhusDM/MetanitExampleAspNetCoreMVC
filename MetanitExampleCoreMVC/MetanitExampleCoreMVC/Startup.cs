@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using MetanitExampleCoreMVC.Util;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
+using MetanitExampleCoreMVC.Infrastructure;
 
 namespace MetanitExampleCoreMVC
 {
@@ -39,7 +40,11 @@ namespace MetanitExampleCoreMVC
                 options.ViewEngines.Clear();
                 options.ViewEngines.Add(new CustomViewEngine());
             });
-            services.AddMvc();
+            services.AddMvc(opts=>
+            {
+                opts.ModelBinderProviders.Insert(0, new EventModelBinderProvider());
+                //opts.ModelBinderProviders.Insert(0, new CustomDateTimeModelBinderProvider());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "GetPhones";
+}
+
+<h2>GetPhones</h2>
+
+<form method="post">
+    @for (int i = 0; i < 2; i++)
+    {
+        <div class="phone">
+            <h3>Модель № @(i + 1)</h3>
+            <p>
+                <label>Название</label><br />
+                <input type="text" name="[@i].Name" />
+            </p>
+            <p>
+                <label>Цена</label><br />
+                <input type="number" name="[@i].Price" />
+            </p>
+            <p>
+                <label>Производитель</label><br />
+                <input type="text" name="[@i].Manufacturer.Name" />
+            </p>
+        </div>
+    }
+
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+</form>
+

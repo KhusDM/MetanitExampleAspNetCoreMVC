@@ -12,6 +12,7 @@ namespace MetanitExampleCoreMVC.Controllers
     {
         IEnumerable<Company> companies;
         IEnumerable<Phone3> phones;
+        static List<Event> events;
 
         public ModelController()
         {
@@ -29,6 +30,26 @@ namespace MetanitExampleCoreMVC.Controllers
                 new Phone3 { Id=5, Manufacturer= google, Name="Nexus 5X", Price=30000 },
                 new Phone3 { Id=6, Manufacturer= google, Name="Nexus 6P", Price=50000 }
             };
+
+            events = events ?? new List<Event>();
+        }
+
+        public IActionResult Index2()
+        {
+            return View(events);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Event ev)
+        {
+            //ev.Id = Guid.NewGuid().ToString();
+            events.Add(ev);
+            return RedirectToAction("Index2");
         }
 
         public IActionResult Index(int? companyId)
@@ -45,6 +66,127 @@ namespace MetanitExampleCoreMVC.Controllers
             }
 
             return View(ivm);
+        }
+
+        //[HttpGet]
+        //public IActionResult GetData(string[] items)
+        //{
+        //    string result = "";
+        //    foreach (var item in items)
+        //    {
+        //        result += item + "; ";
+        //    }
+
+        //    return Content(result);
+        //}
+
+        public IActionResult GetData()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GetData(string[] items)
+        {
+            string result = "";
+            foreach (var item in items)
+            {
+                result += item + "! ";
+            }
+
+            return Content(result);
+        }
+
+        public IActionResult GetDictionary(Dictionary<string, string> items)
+        {
+            string result = "";
+            foreach (var item in items)
+            {
+                result += item.Key + "=" + item.Value + "; ";
+            }
+
+            return Content(result);
+        }
+
+        //public IActionResult GetDictionary()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public IActionResult GetDictionary(Dictionary<string, string> items)
+        //{
+        //    string result = "";
+        //    foreach (var item in items)
+        //    {
+        //        result += item.Key + "=" + item.Value + "; ";
+        //    }
+
+        //    return Content(result);
+        //}
+
+        //public IActionResult GetPhone(Phone3 myPhone)
+        //{
+        //    if (myPhone != null)
+        //    {
+        //        return Content($"Name:{myPhone.Name} Price:{myPhone.Price} Company:{myPhone.Manufacturer?.Name}");
+        //    }
+
+        //    return StatusCode(404);
+        //}
+
+        public IActionResult GetPhone()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GetPhone(Phone3 myPhone)
+        {
+            return Content($"Name: {myPhone?.Name}  Price:{myPhone.Price}  Company: {myPhone.Manufacturer?.Name}");
+        }
+
+        public IActionResult GetPhones()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GetPhones(Phone3[] phones)
+        {
+            string result = "";
+            foreach (var p in phones)
+                result += $"{p.Name} - {p.Price} - {p.Manufacturer?.Name} \n";
+            return Content(result);
+        }
+
+        //public IActionResult AddUser(User2 user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string userInfo = $"Id: {user.Id}  Name: {user.Name}  Age: {user.Age}  HasRight: {user.HasRight}";
+        //        return Content(userInfo);
+        //    }
+
+        //    return Content($"Количество ошибок: {ModelState.ErrorCount}");
+        //}
+
+        public IActionResult GetUserAgent([FromHeader(Name = "User_Agent")] string userAgent)
+        {
+            return Content(userAgent);
+        }
+
+
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddUser([FromQuery] User2 user)
+        {
+            string userInfo = $"Name: {user.Name}  Age: {user.Age}";
+            return Content(userInfo);
         }
     }
 }

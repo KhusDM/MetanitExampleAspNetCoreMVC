@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "HtmlHelpers", FormMethod.Post))
+{
+    @*<p>
+            <label>Модель</label><br />
+            <input type="text" name="Name" />
+        </p>
+        <p>
+            <label>Цена</label><br />
+            <input type="number" name="Price" />
+        </p>
+        <p>
+            <input type="submit" value="Отправить" />
+        </p>*@
+
+    <p>
+        <label>Модель</label><br />
+        @Html.TextBox("Name")
+    </p>
+    <p>
+        <label>Цена</label><br />
+        @Html.TextBox("Price", "", new { type = "number" })
+    </p>
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+
+}
+
+@Html.Label("Name", "Модель")
+<label for="Name">Модель</label>
+
+@Html.TextArea("text", "привет мир")
+<textarea cols="20" id="text" name="text" rows="2">привет мир
+</textarea>
+
+
+@Html.TextArea("text", "привет мир", 5, 50, null)
+<textarea cols="50" id="text" name="text" rows="5">привет мир</textarea>
+
+@Html.Hidden("PhoneId", "2")
+<input id="PhoneId" name="PhoneId" type="hidden" value="2" />
+
+@Html.Password("UserPassword", "val")
+<input id="UserPassword" name="UserPassword" type="password" value="val" />
+
+@Html.RadioButton("color", "red")
+<span>красный</span> <br />
+@Html.RadioButton("color", "blue")
+<span>синий</span> <br />
+@Html.RadioButton("color", "green", true)
+<span>зеленый</span>
+
+<input id="color" name="color" type="radio" value="red" />
+<span>красный</span> <br />
+<input id="color" name="color" type="radio" value="blue" />
+<span>синий</span> <br />
+<input checked="checked" id="color" name="color" type="radio" value="green" />
+<span>зеленый</span>
+
+@Html.CheckBox("Enable", false)
+<input id="Enable" name="Enable" type="checkbox" value="true">
+<input name="Enable" type="hidden" value="false">
+
+@Html.DropDownList("phone", new SelectList(new string[] { "iPhone 7 Pro", "Galaxy 7 Edge", "HTC 10", "Honor 5X" }), "Выберите модель")
+
+<select id="phone" name="phone">
+    <option value="">Выберите модель</option>
+    <option>iPhone 7 Pro</option>
+    <option>Galaxy 7 Edge</option>
+    <option>HTC 10</option>
+    <option>Honor 5X</option>
+</select>
+
+@Html.DropDownList("phoneid", ViewBag.Phones as SelectList)
+
+@Html.ListBox("phones", new MultiSelectList(new string[] { "iPhone 7 Pro", "Galaxy 7 Edge", "HTC 10", "Honor 5X" }))
+
+<select id="phones" multiple="multiple" name="phones">
+    <option>iPhone 7 Pro</option>
+    <option>Galaxy 7 Edge</option>
+    <option>HTC 10</option>
+    <option>Honor 5X</option>
+</select>
+
+@using (Html.BeginForm("Create", "HtmlHelpers", FormMethod.Post))
+{
+    @Html.DropDownList("daytime", Html.GetEnumSelectList(typeof(TimeOfDay)))
+    <br />
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+}

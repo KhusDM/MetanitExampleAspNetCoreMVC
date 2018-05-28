@@ -1,0 +1,17 @@
+﻿<h2>Index</h2>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    string[] cities = new string[] { "Лондон", "Париж", "Берлин" };
+    string[] countries = new string[] { "Великобритания", "Франция", "Германия" };
+}
+
+<h3>Города</h3>
+@Html.CreateList(cities)
+<br />
+<h3>Страны</h3>
+<!-- или можно вызвать так -->
+@ListHelper.CreateList(Html, countries)
