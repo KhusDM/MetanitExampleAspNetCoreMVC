@@ -1,0 +1,67 @@
+﻿@model MetanitExampleCoreMVC.Models.Phone
+@{
+    ViewData["Title"] = "Display";
+}
+
+<h2>Display</h2>
+
+<p>
+    <b>Id:</b><br />
+    @Html.Display("Id")
+</p>
+<p>
+    <b>Модель:</b><br />
+    @Html.Display("Name")
+</p>
+<p>
+    <b>Цена:</b><br />
+    @Html.Display("Price")
+</p>
+
+
+<p>
+    <b>Id:</b><br />
+    @Html.DisplayFor(m => m.Id)
+</p>
+<p>
+    <b>Модель:</b><br />
+    @Html.DisplayFor(m => m.Name)
+</p>
+<p>
+    <b>Цена:</b><br />
+    @Html.DisplayFor(m => m.Price)
+</p>
+
+@Html.DisplayForModel()
+
+@using (Html.BeginForm("Display", "HtmlHelpers", FormMethod.Post))
+{
+    <p>
+        @Html.LabelFor(m => m.Name, "Модель")<br />
+        @Html.EditorFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Price, "Цена")<br />
+        @Html.EditorFor(m => m.Price)
+    </p>
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+}
+
+
+@Html.ActionLink("О сайте", "About")
+<a href="/Home/About">О сайте</a>
+
+@Html.ActionLink("Список книг", "List", "Book")
+
+@Html.ActionLink("Достоевский", "Index", "Book", new { author = "Достоевский", id = 5 }, null)
+
+@Html.ActionLink("Все книги", "Index", "Book", new { author = "Толстой", id = 10 }, new { id = "Tolstoi", @class = "link" })
+
+<a class="link" href="/Book/Index/10?author=%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%BE%D0%B9" id="Tolstoi">Все книги</a>
+
+@Html.RouteLink("Все книги", new { controller = "Book", action = "Index", author = "Толстой", id = 10 }, new { id = "Tolstoi", @class = "link" })
+
+@Html.RouteLink("Все книги", "Default", new { action = "Show" })
+

@@ -98,3 +98,35 @@
         <input type="submit" value="Отправить" />
     </p>
 }
+
+@model MetanitExampleCoreMVC.Models.Phone
+
+@using (Html.BeginForm("Create", "HtmlHelpers", FormMethod.Post))
+{
+    <p>
+        @Html.LabelFor(m => m.Name, "Модель")<br />
+        @Html.TextBoxFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Price, "Цена")<br />
+        @Html.TextBoxFor(m => m.Price, "", new { type = "number" })
+    </p>
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+}
+
+<input data-val="true" data-val-required="The Price field is required." id="Price" name="Price" type="number" value="">
+
+@Html.HiddenFor(m => m.Id)
+<input id="Id" name="Id" type="hidden" value="[значение_m.Id]" />
+
+@*@Html.CheckBoxFor(m => m.Enable, false)
+    <input id="Enable" name="Enable" type="checkbox" value="true" />
+    <input name="Enable" type="hidden" value="false">*@
+
+@Html.LabelFor(m => m.Name, "Модель")
+<label for="Name">Модель</label>
+
+@*@Html.PasswordFor(m => m.Password)
+<input id="Password" name="Password" type="password" />*@

@@ -47,5 +47,18 @@ namespace MetanitExampleCoreMVC.Controllers
         {
             return Content(phone.Name);
         }
+
+        public IActionResult Display()
+        {
+            Phone phone = new Phone() { Id = 1, Name = "Nexus 6P", Price = 49000 };
+
+            return View(phone);
+        }
+
+        [HttpPost]
+        public IActionResult Display(Phone phone)
+        {
+            return Content($"{phone.Name} - {phone.Price}");
+        }
     }
 }
