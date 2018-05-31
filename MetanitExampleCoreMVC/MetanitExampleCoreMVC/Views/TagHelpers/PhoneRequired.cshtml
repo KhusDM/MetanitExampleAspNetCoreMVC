@@ -1,0 +1,74 @@
+﻿@model MetanitExampleCoreMVC.Models.PhoneRequired
+@{
+    ViewData["Title"] = "PhoneRequired";
+}
+
+<h2>PhoneRequired</h2>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+<form asp-antiforgery="true" asp-action="PhoneRequired" asp-controller="TagHelpers">
+    <div>
+        <div class="validation" asp-validation-summary="All"></div>
+        <div>
+
+            <label asp-for="Name"></label><br />
+            <input type="text" asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+
+        <div>
+            <label asp-for="Price"></label><br />
+            <input asp-for="Price" />
+            <span asp-validation-for="Price"></span>
+        </div>
+
+        <div>
+            <label asp-for="CompanyId"></label><br />
+            <select asp-for="CompanyId" asp-items="ViewBag.Companies">
+                <option selected="selected" disabled="disabled">Выберите компанию</option>
+            </select>
+            <span asp-validation-for="CompanyId"></span>
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </div>
+</form>
+
+<cache expires-after="@TimeSpan.FromMinutes(5)">
+    @Html.Partial("BookInfo")
+</cache>
+
+<cache expires-on="@DateTime.Now.AddDays(1)">
+    @Html.Partial("BookInfo")
+</cache>
+
+<cache expires-sliding="@TimeSpan.FromMinutes(10)">
+    @Html.Partial("BookInfo")
+</cache>
+
+<cache expires-after="@TimeSpan.FromMinutes(15)" vary-by-user="true">
+
+</cache>
+
+<cache expires-after="@TimeSpan.FromMinutes(15)" vary-by-route="id">
+
+</cache>
+
+<cache vary-by-query="name">
+
+</cache>
+
+<cache vary-by-cookie="pubid">
+
+</cache>
+
+<cache vary-by-header="User-Agent">
+
+</cache>
+
+<cache vary-by="@ViewBag.Id">
+
+</cache>  

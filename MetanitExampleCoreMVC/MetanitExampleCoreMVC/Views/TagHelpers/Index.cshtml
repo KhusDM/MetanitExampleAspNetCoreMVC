@@ -1,0 +1,48 @@
+﻿@model MetanitExampleCoreMVC.Models.DayTimeViewModel
+@using MetanitExampleCoreMVC.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<a asp-controller="TagHelpers" asp-action="Index">Контакты</a>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+        asp-fallback-test="window.jQuery"
+        crossorigin="anonymous"
+        integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+</script>
+
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
+
+
+<link asp-href-include="~/css/**/*.css" />
+
+<form method="post">
+    <div>
+        <div>
+            <label asp-for="Period">Время суток</label>
+            <select asp-for="Period" asp-items="Html.GetEnumSelectList<DayTime>()"></select>
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </div>
+</form>
+
+<vk></vk>
+<socials><vk></vk></socials>
+
+<vk group="metanit">Metanit</vk> <br />
+<vk group="habr">Хабрахабр</vk>
+
+<vk group="metanit" condition="false">Metanit</vk>
+<vk group="habr" condition="true">Хабрахабр</vk>
+
+<vk info='new LinkInfo{Color="red", FontFamily="Verdana", FontSize=18}'>Група в вк</vk>
+
+<vk>Ссылка на профиль</vk>
