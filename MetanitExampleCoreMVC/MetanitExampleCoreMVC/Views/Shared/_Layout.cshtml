@@ -21,6 +21,7 @@
     <!--основной контент-->
     <div class="container body-content">
         @RenderBody()
+        @RenderSection("scripts", required: false)
         <hr />
         <footer>
             <p>© 2015 - MobileStore</p>

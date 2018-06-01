@@ -40,9 +40,10 @@ namespace MetanitExampleCoreMVC
                 options.ViewEngines.Clear();
                 options.ViewEngines.Add(new CustomViewEngine());
             });
-            services.AddMvc(opts=>
+            services.AddMvc(opts =>
             {
                 opts.ModelBinderProviders.Insert(0, new EventModelBinderProvider());
+                opts.MaxModelValidationErrors = 50;
                 //opts.ModelBinderProviders.Insert(0, new CustomDateTimeModelBinderProvider());
             });
         }

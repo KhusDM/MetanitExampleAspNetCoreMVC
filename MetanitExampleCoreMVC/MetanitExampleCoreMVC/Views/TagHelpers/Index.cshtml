@@ -2,6 +2,8 @@
 @using MetanitExampleCoreMVC.TagHelpers
 @{
     ViewData["Title"] = "Index";
+    List<string> countries = new List<string> { "Бразилия", "Аргентина", "Уругвай" };
+    List<string> cities = new List<string> { "Бразилиа", "Буэйнос-Айрес", "Монтевидео" };
 }
 
 <h2>Index</h2>
@@ -46,3 +48,24 @@
 <vk info='new LinkInfo{Color="red", FontFamily="Verdana", FontSize=18}'>Група в вк</vk>
 
 <vk>Ссылка на профиль</vk>
+
+<div header divtitle>Первый параграф</div>
+<div header divtitle>Второй параграф</div>
+<article-header>Заголовок!</article-header>
+
+<form-header>Заголовок1</form-header>
+<form-header form-title>Заголовок2</form-header>
+
+<form>
+    <form-header form-title>Заголовок3</form-header>
+</form>
+
+<list elements="countries"></list>
+<list elements="cities"></list>
+
+@using MetanitExampleCoreMVC.ViewModels @*Пространство имен модели Book*@
+@{
+    BookViewModel mybook = new BookViewModel { Id = 1, Title = "Война и мир", Author = "Л. Толстой", Year = 1862 };
+}
+
+<book-info book="mybook"></book-info>
