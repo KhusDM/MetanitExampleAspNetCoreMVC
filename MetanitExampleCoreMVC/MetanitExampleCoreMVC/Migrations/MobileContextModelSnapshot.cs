@@ -47,6 +47,8 @@ namespace MetanitExampleCoreMVC.Migrations
 
                     b.Property<string>("Company");
 
+                    b.Property<int>("CompanyId");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("Price");

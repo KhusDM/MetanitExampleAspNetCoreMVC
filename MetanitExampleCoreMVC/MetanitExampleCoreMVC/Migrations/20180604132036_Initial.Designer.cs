@@ -11,7 +11,7 @@ using System;
 namespace MetanitExampleCoreMVC.Migrations
 {
     [DbContext(typeof(MobileContext))]
-    [Migration("20180521104615_Initial")]
+    [Migration("20180604132036_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,8 @@ namespace MetanitExampleCoreMVC.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Company");
+
+                    b.Property<int>("CompanyId");
 
                     b.Property<string>("Name");
 

@@ -16,6 +16,7 @@ namespace MetanitExampleCoreMVC.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Company = table.Column<string>(nullable: true),
+                    CompanyId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false)
                 },

@@ -11,7 +11,15 @@ namespace MetanitExampleCoreMVC.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            Person p = new Person
+            {
+                Name = "Элронд Смит",
+                Age = 58,
+                Email = "elrond.smith@gmail.com",
+                Password = "qwerty"
+            };
+
+            return View(p);
         }
 
         public IActionResult Create()

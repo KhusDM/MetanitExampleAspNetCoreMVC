@@ -1,0 +1,33 @@
+﻿@model MetanitExampleCoreMVC.Models.Person
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.DisplayForModel()
+
+<form asp-action="Index" asp-controller="Validation" asp-anti-forgery="true">
+    <div>
+        <div>
+            <label asp-for="Name"></label><br />
+            <input type="text" asp-for="Name" />
+        </div>
+        <div>
+            <label asp-for="Email"></label><br />
+            <input asp-for="Email" />
+        </div>
+        <div>
+            <label asp-for="Password"></label><br />
+            <input asp-for="Password" />
+        </div>
+        <div>
+            <label asp-for="Age"></label><br />
+            <input asp-for="Age" />
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </div>
+</form>
+

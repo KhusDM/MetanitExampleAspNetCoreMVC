@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MetanitExampleCoreMVC.Models.Phone>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<a asp-action="Create">Добавить модель</a>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>
+                <a asp-action="Details" asp-controller="DataModel" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Edit" asp-controller="DataModel" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Delete" asp-controller="DataModel" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>
+
