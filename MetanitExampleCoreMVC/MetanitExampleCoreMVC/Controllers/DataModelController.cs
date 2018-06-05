@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MetanitExampleCoreMVC.Models;
+using MetanitExampleCoreMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace MetanitExampleCoreMVC.Controllers
 {
     public class DataModelController : Controller
     {
         private MobileContext db;
+        private UsersContext dbUsers;
 
-        public DataModelController(MobileContext context)
+        public DataModelController(MobileContext context, UsersContext usersContext)
         {
             db = context;
+            dbUsers = usersContext;
         }
 
         public async Task<IActionResult> Index()
@@ -111,6 +115,46 @@ namespace MetanitExampleCoreMVC.Controllers
             }
 
             return NotFound();
+        }
+
+        public async Task<IActionResult> Sort(SortState sortOrder = SortState.NameAsc)
+        {
+            IIncludableQueryable<MetanitExampleCoreMVC.Models.User, Company> users = dbUsers.Users.Include(x => x.Company);
+            IQueryable<MetanitExampleCoreMVC.Models.User> usersResult;
+
+            ViewData["NameSort"] = sortOrder == SortState.NameAsc ? SortState.NameDesc : SortState.NameAsc;
+            ViewData["AgeSort"] = sortOrder == SortState.AgeAsc ? SortState.AgeDesc : SortState.AgeAsc;
+            ViewData["CompanySort"] = sortOrder == SortState.CompanyAsc ? SortState.CompanyDesc : SortState.CompanyAsc;
+
+            switch (sortOrder)
+            {
+                case SortState.NameDesc:
+                    usersResult = users.OrderByDescending(s => s.Name);
+                    break;
+                case SortState.AgeAsc:
+                    usersResult = users.OrderBy(s => s.Name);
+                    break;
+                case SortState.AgeDesc:
+                    usersResult = users.OrderByDescending(s => s.Name);
+                    break;
+                case SortState.CompanyAsc:
+                    usersResult = users.OrderBy(s => s.Name);
+                    break;
+                case SortState.CompanyDesc:
+                    usersResult = users.OrderByDescending(s => s.Company.Name);
+                    break;
+                default:
+                    usersResult = users.OrderBy(s => s.Name);
+                    break;
+            }
+
+            IndexSortViewModel viewModel = new IndexSortViewModel
+            {
+                Users = await usersResult.AsNoTracking().ToListAsync(),
+                SortViewModel = new SortViewModel(sortOrder)
+            };
+
+            return View(viewModel);
         }
     }
 }

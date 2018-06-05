@@ -30,8 +30,10 @@ namespace MetanitExampleCoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
+            string userConnection = Configuration.GetConnectionString("UserConnection");
 
             services.AddDbContext<MobileContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<UsersContext>(options => options.UseSqlServer(userConnection)); /*Add - Migration Initial - Context UsersContext*/
             services.AddTransient<ITimeService, SimpleTimeService>();
             services.AddTransient<IMessageSender, EmailMessageSender>();
             services.AddTransient<IRepository, PhoneRepository>();

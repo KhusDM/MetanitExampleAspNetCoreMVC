@@ -10,59 +10,54 @@ using System;
 
 namespace MetanitExampleCoreMVC.Migrations
 {
-    [DbContext(typeof(MobileContext))]
-    partial class MobileContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UsersContext))]
+    [Migration("20180605083148_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MetanitExampleCoreMVC.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("ContactPhone");
-
-                    b.Property<int>("PhoneId");
-
-                    b.Property<string>("User");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("PhoneId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("MetanitExampleCoreMVC.Models.Phone", b =>
+            modelBuilder.Entity("MetanitExampleCoreMVC.Models.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Company");
+                    b.Property<string>("Country");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("MetanitExampleCoreMVC.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
 
                     b.Property<int>("CompanyId");
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Price");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Phones");
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MetanitExampleCoreMVC.Models.Order", b =>
+            modelBuilder.Entity("MetanitExampleCoreMVC.Models.User", b =>
                 {
-                    b.HasOne("MetanitExampleCoreMVC.Models.Phone", "Phone")
+                    b.HasOne("MetanitExampleCoreMVC.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("PhoneId")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

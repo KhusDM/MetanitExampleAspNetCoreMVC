@@ -1,0 +1,35 @@
+﻿@*@model IEnumerable<MetanitExampleCoreMVC.Models.User>*@
+@model IndexSortViewModel
+@{
+    ViewData["Title"] = "Sort";
+}
+
+<h2>Sort</h2>
+
+<h1>Список пользователей</h1>
+<table class="table">
+    <tr>
+        <th>
+            <sort-header action="Sort" up="@Model.SortViewModel.Up"
+                         current="@Model.SortViewModel.Current" property="@Model.SortViewModel.NameSort">
+                Имя
+            </sort-header>
+        </th>
+        <th>
+            <sort-header action="Sort" up="@Model.SortViewModel.Up"
+                         current="@Model.SortViewModel.Current" property="@Model.SortViewModel.AgeSort">
+                Возраст
+            </sort-header>
+        </th>
+        <th>
+            <sort-header action="Sort" up="@Model.SortViewModel.Up"
+                         current="@Model.SortViewModel.Current" property="@Model.SortViewModel.CompanySort">
+                Компания
+            </sort-header>
+        </th>
+    </tr>
+    @foreach (MetanitExampleCoreMVC.Models.User u in Model.Users)
+    {
+        <tr><td>@u.Name</td><td>@u.Age</td><td>@u.Company.Name</td></tr>
+    }
+</table>

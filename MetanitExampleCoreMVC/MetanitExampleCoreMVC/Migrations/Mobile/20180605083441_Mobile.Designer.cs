@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MetanitExampleCoreMVC.Migrations
+namespace MetanitExampleCoreMVC.Migrations.Mobile
 {
     [DbContext(typeof(MobileContext))]
-    [Migration("20180604132036_Initial")]
-    partial class Initial
+    [Migration("20180605083441_Mobile")]
+    partial class Mobile
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
