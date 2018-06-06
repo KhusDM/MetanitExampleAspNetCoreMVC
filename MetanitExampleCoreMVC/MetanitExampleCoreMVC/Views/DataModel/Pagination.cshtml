@@ -1,0 +1,34 @@
+﻿@model IndexPageViewModel
+@{
+    ViewData["Title"] = "Pagination";
+}
+
+<h2>Pagination</h2>
+
+<table class="table">
+    <tr><th>Имя</th><th>Возраст</th><th>Компания</th></tr>
+    @foreach (var u in Model.Users)
+    {
+        <tr><td>@u.Name</td><td>@u.Age</td><td>@u.Company.Name</td></tr>
+    }
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Pagination"></page-link>
+@*@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Pagination"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Pagination"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-right"></i>
+        Вперед
+    </a>
+}*@
+

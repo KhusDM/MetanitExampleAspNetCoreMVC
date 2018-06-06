@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MetanitExampleCoreMVC.Models;
 using MetanitExampleCoreMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -152,6 +153,110 @@ namespace MetanitExampleCoreMVC.Controllers
             {
                 Users = await usersResult.AsNoTracking().ToListAsync(),
                 SortViewModel = new SortViewModel(sortOrder)
+            };
+
+            return View(viewModel);
+        }
+
+        public IActionResult Filter(int? company, string name)
+        {
+            IIncludableQueryable<MetanitExampleCoreMVC.Models.User, Company> users = dbUsers.Users.Include(p => p.Company);
+            IQueryable<MetanitExampleCoreMVC.Models.User> usersResult = null;
+            if (company != null && company != 0)
+            {
+                usersResult = users.Where(p => p.CompanyId == company);
+            }
+            else
+            {
+                usersResult = users;
+            }
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                usersResult = usersResult.Where(p => p.Name.Contains(name));
+            }
+
+            List<Company> companies = dbUsers.Companies.ToList();
+            // устанавливаем начальный элемент, который позволит выбрать всех
+            companies.Insert(0, new Company { Name = "Все", Id = 0 });
+
+            UsersListViewModel viewModel = new UsersListViewModel
+            {
+                Users = usersResult?.ToList(),
+                Companies = new SelectList(companies, "Id", "Name"),
+                Name = name
+            };
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> Pagination(int page = 1)
+        {
+            int pageSize = 1;
+            IIncludableQueryable<MetanitExampleCoreMVC.Models.User, Company> source = dbUsers.Users.Include(x => x.Company);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexPageViewModel viewModel = new IndexPageViewModel()
+            {
+                PageViewModel = pageViewModel,
+                Users = items
+            };
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> FilterSortPaging(int? company, string name, int page = 1,
+           SortState sortOrder = SortState.NameAsc)
+        {
+            int pageSize = 1;
+
+            //фильтрация
+            IQueryable<MetanitExampleCoreMVC.Models.User> users = dbUsers.Users.Include(x => x.Company);
+
+            if (company != null && company != 0)
+            {
+                users = users.Where(p => p.CompanyId == company);
+            }
+            if (!String.IsNullOrEmpty(name))
+            {
+                users = users.Where(p => p.Name.Contains(name));
+            }
+
+            // сортировка
+            switch (sortOrder)
+            {
+                case SortState.NameDesc:
+                    users = users.OrderByDescending(s => s.Name);
+                    break;
+                case SortState.AgeAsc:
+                    users = users.OrderBy(s => s.Age);
+                    break;
+                case SortState.AgeDesc:
+                    users = users.OrderByDescending(s => s.Age);
+                    break;
+                case SortState.CompanyAsc:
+                    users = users.OrderBy(s => s.Company.Name);
+                    break;
+                case SortState.CompanyDesc:
+                    users = users.OrderByDescending(s => s.Company.Name);
+                    break;
+                default:
+                    users = users.OrderBy(s => s.Name);
+                    break;
+            }
+
+            // пагинация
+            var count = await users.CountAsync();
+            var items = await users.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            // формируем модель представления
+            FilterSortPagingViewModel viewModel = new FilterSortPagingViewModel
+            {
+                PageViewModel = new PageViewModel(count, page, pageSize),
+                SortViewModel = new SortSecondViewModel(sortOrder),
+                FilterViewModel = new FilterViewModel(dbUsers.Companies.ToList(), company, name),
+                Users = items
             };
 
             return View(viewModel);
