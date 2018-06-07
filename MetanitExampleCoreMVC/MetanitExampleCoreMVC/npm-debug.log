@@ -1,0 +1,62 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\Node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'gulp@3.9.1' ]
+2 info using npm@3.3.4
+3 info using node@v5.4.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData gulp@3.9.1
+8 silly fetchNamedPackageData gulp
+9 silly mapToRegistry name gulp
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/gulp
+13 verbose request uri https://registry.npmjs.org/gulp
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 12:53:26
+16 verbose request id c22b26841e456340
+17 http request GET https://registry.npmjs.org/gulp
+18 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.95.96:443
+19 info attempt registry request try #2 at 12:53:57
+20 http request GET https://registry.npmjs.org/gulp
+21 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.95.96:443
+22 info attempt registry request try #3 at 12:55:18
+23 http request GET https://registry.npmjs.org/gulp
+24 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.95.96:443
+24 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+24 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+24 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+24 silly fetchPackageMetaData  error for gulp@3.9.1 { [Error: connect ETIMEDOUT 104.18.95.96:443]
+24 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+24 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+24 silly fetchPackageMetaData   syscall: 'connect',
+24 silly fetchPackageMetaData   address: '104.18.95.96',
+24 silly fetchPackageMetaData   port: 443 }
+25 silly rollbackFailedOptional Starting
+26 silly rollbackFailedOptional Finishing
+27 silly runTopLevelLifecycles Starting
+28 silly runTopLevelLifecycles Finishing
+29 silly install printInstalled
+30 verbose stack Error: connect ETIMEDOUT 104.18.95.96:443
+30 verbose stack     at Object.exports._errnoException (util.js:856:11)
+30 verbose stack     at exports._exceptionWithHostPort (util.js:879:20)
+30 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+31 verbose cwd C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC
+32 error Windows_NT 10.0.15063
+33 error argv "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\Node.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js" "install" "gulp@3.9.1"
+34 error node v5.4.1
+35 error npm  v3.3.4
+36 error code ETIMEDOUT
+37 error errno ETIMEDOUT
+38 error syscall connect
+39 error network connect ETIMEDOUT 104.18.95.96:443
+39 error network This is most likely not a problem with npm itself
+39 error network and is related to network connectivity.
+39 error network In most cases you are behind a proxy or have bad network settings.
+39 error network
+39 error network If you are behind a proxy, please make sure that the
+39 error network 'proxy' config is set properly.  See: 'npm help config'
+40 verbose exit [ 1, true ]

@@ -31,9 +31,13 @@ namespace MetanitExampleCoreMVC
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             string userConnection = Configuration.GetConnectionString("UserConnection");
+            string productConnection = Configuration.GetConnectionString("ProductConnection");
 
             services.AddDbContext<MobileContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<UsersContext>(options => options.UseSqlServer(userConnection)); /*Add - Migration Initial - Context UsersContext*/
+            services.AddDbContext<ProductContext>(options => options.UseSqlServer(productConnection));
+            services.AddTransient<ProductService>();
+            services.AddMemoryCache();
             services.AddTransient<ITimeService, SimpleTimeService>();
             services.AddTransient<IMessageSender, EmailMessageSender>();
             services.AddTransient<IRepository, PhoneRepository>();
