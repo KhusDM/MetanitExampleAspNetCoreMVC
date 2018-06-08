@@ -19,8 +19,8 @@ namespace MetanitExampleCoreMVC.Controllers
             productService.Initialize();
         }
 
+        [ResponseCache(CacheProfileName = "NoCaching")]
         //[ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
-        [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 300)]
         public async Task<IActionResult> Index(int? id)
         {
             if (id != null)
@@ -34,6 +34,12 @@ namespace MetanitExampleCoreMVC.Controllers
             }
 
             return Content("Product not found");
+        }
+
+        [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 300)]
+        public IActionResult CacheView()
+        {
+            return View();
         }
     }
 }

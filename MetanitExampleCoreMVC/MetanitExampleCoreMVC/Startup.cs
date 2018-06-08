@@ -14,6 +14,8 @@ using MetanitExampleCoreMVC.Util;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
 using MetanitExampleCoreMVC.Infrastructure;
+using Microsoft.AspNetCore.ResponseCompression;
+using MetanitExampleCoreMVC.Filters;
 
 namespace MetanitExampleCoreMVC
 {
@@ -51,7 +53,21 @@ namespace MetanitExampleCoreMVC
                 opts.ModelBinderProviders.Insert(0, new EventModelBinderProvider());
                 opts.MaxModelValidationErrors = 50;
                 //opts.ModelBinderProviders.Insert(0, new CustomDateTimeModelBinderProvider());
+                opts.CacheProfiles.Add("Caching", new CacheProfile { Duration = 300 });
+                opts.CacheProfiles.Add("NoCaching", new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true });
+                opts.Filters.Add(typeof(SimpleActionFilter));
             });
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add(new DeflateCompressionProvider());
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml", "application/atom+xml" });
+                options.EnableForHttps = true;
+            });
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = System.IO.Compression.CompressionLevel.Optimal;
+            });
+            //services.AddScoped<SimpleResourceFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +84,13 @@ namespace MetanitExampleCoreMVC
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = ctx =>
+                  {
+                      ctx.Context.Response.Headers.Add("Cache-Control", "public,max-age=600");
+                  }
+            });
 
             app.UseMvc(routes =>
             {
@@ -81,6 +103,16 @@ namespace MetanitExampleCoreMVC
                      context.Response.ContentType = "text/html;utf-8";
                      await context.Response.WriteAsync("для обработки использован маршрут api / get");
                  });
+            });
+
+            app.UseResponseCompression();
+
+            app.Run(async context =>
+            {
+                string loremIpsum = "Lorem Ipsum is simply dummy text ... including versions of Lorem Ipsum.";
+
+                context.Response.ContentType = "text/plain";
+                await context.Response.WriteAsync(loremIpsum);
             });
         }
     }
