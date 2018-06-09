@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MetanitExampleCoreMVC.Controllers
 {
     //[SimpleActionFilter]
+    [RequireHttps]
     public class FiltersController : Controller
     {
         //[SimpleActionFilter]
@@ -15,7 +16,8 @@ namespace MetanitExampleCoreMVC.Controllers
         //[ServiceFilter(typeof(SimpleResourceFilter))]
         //[TypeFilter(typeof(SimpleResourceFilter))]
         //[IEFilter]
-        [Whitespace]
+        //[Whitespace]
+        [TimeExecutionFilter]
         public IActionResult Index()
         {
             return View();

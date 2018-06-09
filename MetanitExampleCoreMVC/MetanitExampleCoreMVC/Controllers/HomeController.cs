@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using MetanitExampleCoreMVC.Services;
 using Microsoft.Extensions.DependencyInjection;
+using MetanitExampleCoreMVC.Filters;
 
 namespace MetanitExampleCoreMVC.Controllers
 {
@@ -31,8 +32,11 @@ namespace MetanitExampleCoreMVC.Controllers
 
         //[Route("Main")]     // сопоставляется с Home/Main, либо с Store/Main
         //[Route("Index")] // сопоставляется с Home/Index, либо с Store/Index
+        [CustomExceptionFilter]
         public IActionResult Index()
         {
+            int x = 0;
+            int a = 3 / x;
             return View(db.Phones.ToList());
         }
 
@@ -313,6 +317,16 @@ namespace MetanitExampleCoreMVC.Controllers
             string contentUrl = Url.Content("~/lib/jquery/dist/jquery.js");
             string actionUrl = Url.Action("Index", "Home");
             return Content(contentUrl);
+        }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
+
+        public IActionResult ErrorStatus(string id)
+        {
+            return Content($"Статуcный код ошибки: {id}");
         }
     }
 

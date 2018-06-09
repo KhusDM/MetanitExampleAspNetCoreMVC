@@ -56,6 +56,7 @@ namespace MetanitExampleCoreMVC
                 opts.CacheProfiles.Add("Caching", new CacheProfile { Duration = 300 });
                 opts.CacheProfiles.Add("NoCaching", new CacheProfile { Location = ResponseCacheLocation.None, NoStore = true });
                 opts.Filters.Add(typeof(SimpleActionFilter));
+                opts.Filters.Add(typeof(RequireHttpsAttribute));
             });
             services.AddResponseCompression(options =>
             {
@@ -84,6 +85,11 @@ namespace MetanitExampleCoreMVC
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            //app.UseStatusCodePages();
+            //app.UseStatusCodePagesWithRedirects("~/Home/ErrorStatus/{0}");
+            //app.UseStatusCodePagesWithReExecute("~/Home/ErrorStatus/{0}");
+            app.UseStatusCodePagesWithReExecute("/errors/{0}.html");
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 OnPrepareResponse = ctx =>
@@ -107,13 +113,13 @@ namespace MetanitExampleCoreMVC
 
             app.UseResponseCompression();
 
-            app.Run(async context =>
-            {
-                string loremIpsum = "Lorem Ipsum is simply dummy text ... including versions of Lorem Ipsum.";
+            //app.Run(async context =>
+            //{
+            //    string loremIpsum = "Lorem Ipsum is simply dummy text ... including versions of Lorem Ipsum.";
 
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync(loremIpsum);
-            });
+            //    context.Response.ContentType = "text/plain";
+            //    await context.Response.WriteAsync(loremIpsum);
+            //});
         }
     }
 }
