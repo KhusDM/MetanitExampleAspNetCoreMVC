@@ -32,7 +32,7 @@ namespace MetanitExampleCoreMVC.Controllers
 
         //[Route("Main")]     // сопоставляется с Home/Main, либо с Store/Main
         //[Route("Index")] // сопоставляется с Home/Index, либо с Store/Index
-        [CustomExceptionFilter]
+        //[CustomExceptionFilter]
         public IActionResult Index()
         {
             int x = 0;

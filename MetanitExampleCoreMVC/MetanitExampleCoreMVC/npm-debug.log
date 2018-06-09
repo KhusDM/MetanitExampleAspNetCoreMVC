@@ -1,62 +1,222 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\Node.exe',
 1 verbose cli   'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install',
-1 verbose cli   'gulp@3.9.1' ]
+1 verbose cli   'install' ]
 2 info using npm@3.3.4
 3 info using node@v5.4.1
 4 silly loadCurrentTree Starting
 5 silly install loadCurrentTree
 6 silly install readLocalPackageData
-7 silly fetchPackageMetaData gulp@3.9.1
-8 silly fetchNamedPackageData gulp
-9 silly mapToRegistry name gulp
-10 silly mapToRegistry using default registry
-11 silly mapToRegistry registry https://registry.npmjs.org/
-12 silly mapToRegistry uri https://registry.npmjs.org/gulp
-13 verbose request uri https://registry.npmjs.org/gulp
-14 verbose request no auth needed
-15 info attempt registry request try #1 at 12:53:26
-16 verbose request id c22b26841e456340
-17 http request GET https://registry.npmjs.org/gulp
-18 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.95.96:443
-19 info attempt registry request try #2 at 12:53:57
-20 http request GET https://registry.npmjs.org/gulp
-21 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.95.96:443
-22 info attempt registry request try #3 at 12:55:18
-23 http request GET https://registry.npmjs.org/gulp
-24 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.95.96:443
-24 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
-24 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
-24 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
-24 silly fetchPackageMetaData  error for gulp@3.9.1 { [Error: connect ETIMEDOUT 104.18.95.96:443]
-24 silly fetchPackageMetaData   code: 'ETIMEDOUT',
-24 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
-24 silly fetchPackageMetaData   syscall: 'connect',
-24 silly fetchPackageMetaData   address: '104.18.95.96',
-24 silly fetchPackageMetaData   port: 443 }
-25 silly rollbackFailedOptional Starting
-26 silly rollbackFailedOptional Finishing
-27 silly runTopLevelLifecycles Starting
-28 silly runTopLevelLifecycles Finishing
-29 silly install printInstalled
-30 verbose stack Error: connect ETIMEDOUT 104.18.95.96:443
-30 verbose stack     at Object.exports._errnoException (util.js:856:11)
-30 verbose stack     at exports._exceptionWithHostPort (util.js:879:20)
-30 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
-31 verbose cwd C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC
-32 error Windows_NT 10.0.15063
-33 error argv "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\Node.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js" "install" "gulp@3.9.1"
-34 error node v5.4.1
-35 error npm  v3.3.4
-36 error code ETIMEDOUT
-37 error errno ETIMEDOUT
-38 error syscall connect
-39 error network connect ETIMEDOUT 104.18.95.96:443
-39 error network This is most likely not a problem with npm itself
-39 error network and is related to network connectivity.
-39 error network In most cases you are behind a proxy or have bad network settings.
-39 error network
-39 error network If you are behind a proxy, please make sure that the
-39 error network 'proxy' config is set properly.  See: 'npm help config'
-40 verbose exit [ 1, true ]
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData jquery
+20 silly mapToRegistry name jquery
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/jquery
+24 silly fetchNamedPackageData bootstrap
+25 silly mapToRegistry name bootstrap
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry uri https://registry.npmjs.org/bootstrap
+29 silly fetchNamedPackageData gulp
+30 silly mapToRegistry name gulp
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/gulp
+34 silly fetchNamedPackageData gulp-contact
+35 silly mapToRegistry name gulp-contact
+36 silly mapToRegistry using default registry
+37 silly mapToRegistry registry https://registry.npmjs.org/
+38 silly mapToRegistry uri https://registry.npmjs.org/gulp-contact
+39 silly fetchNamedPackageData gulp-cssmin
+40 silly mapToRegistry name gulp-cssmin
+41 silly mapToRegistry using default registry
+42 silly mapToRegistry registry https://registry.npmjs.org/
+43 silly mapToRegistry uri https://registry.npmjs.org/gulp-cssmin
+44 silly fetchNamedPackageData gulp-uglify
+45 silly mapToRegistry name gulp-uglify
+46 silly mapToRegistry using default registry
+47 silly mapToRegistry registry https://registry.npmjs.org/
+48 silly mapToRegistry uri https://registry.npmjs.org/gulp-uglify
+49 silly fetchNamedPackageData rimraf
+50 silly mapToRegistry name rimraf
+51 silly mapToRegistry using default registry
+52 silly mapToRegistry registry https://registry.npmjs.org/
+53 silly mapToRegistry uri https://registry.npmjs.org/rimraf
+54 verbose request uri https://registry.npmjs.org/jquery
+55 verbose request no auth needed
+56 info attempt registry request try #1 at 14:16:03
+57 verbose request id e7211cfc1873768f
+58 http request GET https://registry.npmjs.org/jquery
+59 verbose request uri https://registry.npmjs.org/bootstrap
+60 verbose request no auth needed
+61 info attempt registry request try #1 at 14:16:03
+62 http request GET https://registry.npmjs.org/bootstrap
+63 verbose request uri https://registry.npmjs.org/gulp
+64 verbose request no auth needed
+65 info attempt registry request try #1 at 14:16:03
+66 http request GET https://registry.npmjs.org/gulp
+67 verbose request uri https://registry.npmjs.org/gulp-contact
+68 verbose request no auth needed
+69 info attempt registry request try #1 at 14:16:03
+70 http request GET https://registry.npmjs.org/gulp-contact
+71 verbose request uri https://registry.npmjs.org/gulp-cssmin
+72 verbose request no auth needed
+73 info attempt registry request try #1 at 14:16:03
+74 http request GET https://registry.npmjs.org/gulp-cssmin
+75 verbose request uri https://registry.npmjs.org/gulp-uglify
+76 verbose request no auth needed
+77 info attempt registry request try #1 at 14:16:03
+78 http request GET https://registry.npmjs.org/gulp-uglify
+79 verbose request uri https://registry.npmjs.org/rimraf
+80 verbose request no auth needed
+81 info attempt registry request try #1 at 14:16:03
+82 http request GET https://registry.npmjs.org/rimraf
+83 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+84 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+85 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+86 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+87 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+88 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+89 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+90 info attempt registry request try #2 at 14:16:34
+91 http request GET https://registry.npmjs.org/jquery
+92 info attempt registry request try #2 at 14:16:34
+93 http request GET https://registry.npmjs.org/gulp-cssmin
+94 info attempt registry request try #2 at 14:16:34
+95 http request GET https://registry.npmjs.org/gulp-contact
+96 info attempt registry request try #2 at 14:16:34
+97 http request GET https://registry.npmjs.org/gulp-uglify
+98 info attempt registry request try #2 at 14:16:34
+99 http request GET https://registry.npmjs.org/rimraf
+100 info attempt registry request try #2 at 14:16:34
+101 http request GET https://registry.npmjs.org/gulp
+102 info attempt registry request try #2 at 14:16:34
+103 http request GET https://registry.npmjs.org/bootstrap
+104 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+105 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+106 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+107 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+108 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+109 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+110 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.18.96.96:443
+111 info attempt registry request try #3 at 14:17:55
+112 http request GET https://registry.npmjs.org/gulp-contact
+113 info attempt registry request try #3 at 14:17:55
+114 http request GET https://registry.npmjs.org/gulp-cssmin
+115 info attempt registry request try #3 at 14:17:55
+116 http request GET https://registry.npmjs.org/jquery
+117 info attempt registry request try #3 at 14:17:55
+118 http request GET https://registry.npmjs.org/gulp
+119 info attempt registry request try #3 at 14:17:55
+120 http request GET https://registry.npmjs.org/gulp-uglify
+121 info attempt registry request try #3 at 14:17:55
+122 http request GET https://registry.npmjs.org/bootstrap
+123 info attempt registry request try #3 at 14:17:55
+124 http request GET https://registry.npmjs.org/rimraf
+125 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+125 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+125 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+125 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+125 silly fetchPackageMetaData  error for gulp-cssmin@0.1.7 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+125 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+125 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+125 silly fetchPackageMetaData   syscall: 'connect',
+125 silly fetchPackageMetaData   address: '104.18.96.96',
+125 silly fetchPackageMetaData   port: 443 }
+126 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+126 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+126 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+126 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+126 silly fetchPackageMetaData  error for jquery@3.3.1 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+126 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+126 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+126 silly fetchPackageMetaData   syscall: 'connect',
+126 silly fetchPackageMetaData   address: '104.18.96.96',
+126 silly fetchPackageMetaData   port: 443 }
+127 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+127 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+127 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+127 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+127 silly fetchPackageMetaData  error for gulp-contact@2.6.0 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+127 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+127 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+127 silly fetchPackageMetaData   syscall: 'connect',
+127 silly fetchPackageMetaData   address: '104.18.96.96',
+127 silly fetchPackageMetaData   port: 443 }
+128 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+128 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+128 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+128 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+128 silly fetchPackageMetaData  error for bootstrap@4.1.1 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+128 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+128 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+128 silly fetchPackageMetaData   syscall: 'connect',
+128 silly fetchPackageMetaData   address: '104.18.96.96',
+128 silly fetchPackageMetaData   port: 443 }
+129 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+129 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+129 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+129 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+129 silly fetchPackageMetaData  error for gulp@3.9.1 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+129 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+129 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+129 silly fetchPackageMetaData   syscall: 'connect',
+129 silly fetchPackageMetaData   address: '104.18.96.96',
+129 silly fetchPackageMetaData   port: 443 }
+130 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+130 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+130 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+130 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+130 silly fetchPackageMetaData  error for rimraf@2.5.4 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+130 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+130 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+130 silly fetchPackageMetaData   syscall: 'connect',
+130 silly fetchPackageMetaData   address: '104.18.96.96',
+130 silly fetchPackageMetaData   port: 443 }
+131 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.18.96.96:443
+131 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+131 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+131 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+131 silly fetchPackageMetaData  error for gulp-uglify@2.0.0 { [Error: connect ETIMEDOUT 104.18.96.96:443]
+131 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+131 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+131 silly fetchPackageMetaData   syscall: 'connect',
+131 silly fetchPackageMetaData   address: '104.18.96.96',
+131 silly fetchPackageMetaData   port: 443 }
+132 silly rollbackFailedOptional Starting
+133 silly rollbackFailedOptional Finishing
+134 silly runTopLevelLifecycles Starting
+135 silly runTopLevelLifecycles Finishing
+136 silly install printInstalled
+137 verbose stack Error: connect ETIMEDOUT 104.18.96.96:443
+137 verbose stack     at Object.exports._errnoException (util.js:856:11)
+137 verbose stack     at exports._exceptionWithHostPort (util.js:879:20)
+137 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1062:14)
+138 verbose cwd C:\Users\Dmitry.Khusnetdinov\source\repos\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC\MetanitExampleCoreMVC
+139 error Windows_NT 10.0.15063
+140 error argv "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\Node.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js" "install"
+141 error node v5.4.1
+142 error npm  v3.3.4
+143 error code ETIMEDOUT
+144 error errno ETIMEDOUT
+145 error syscall connect
+146 error network connect ETIMEDOUT 104.18.96.96:443
+146 error network This is most likely not a problem with npm itself
+146 error network and is related to network connectivity.
+146 error network In most cases you are behind a proxy or have bad network settings.
+146 error network
+146 error network If you are behind a proxy, please make sure that the
+146 error network 'proxy' config is set properly.  See: 'npm help config'
+147 verbose exit [ 1, true ]

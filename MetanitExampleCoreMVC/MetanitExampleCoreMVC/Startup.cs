@@ -88,7 +88,7 @@ namespace MetanitExampleCoreMVC
             //app.UseStatusCodePages();
             //app.UseStatusCodePagesWithRedirects("~/Home/ErrorStatus/{0}");
             //app.UseStatusCodePagesWithReExecute("~/Home/ErrorStatus/{0}");
-            app.UseStatusCodePagesWithReExecute("/errors/{0}.html");
+            //app.UseStatusCodePagesWithReExecute("/errors/{0}.html");
 
             app.UseStaticFiles(new StaticFileOptions()
             {
